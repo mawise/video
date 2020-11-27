@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+  <nav>
+    <header>
+      <%=link_to "Home", root_path, class: 'navigation-home' %>
+        <% if user_signed_in? %>
+          <% if current_user.admin == 1 %>
+            <%= link_to "Users", users_path %>
+          <% end %>
+          <%= link_to "Account", edit_user_registration_path %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+        <% end %>
+    </header>
+    </nav>
+
+    <div class="container">
+      <% if notice and !notice.empty? %>
+        <p class="notice"><%= notice %><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span></p>
+      <% end %>
+      <% if alert and !alert.empty? %>
+        <p class="alert"><%= alert %><span class="closebtn" onclick="this.parentElement.st
+yl  e.display='none';">&times;</span></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+  </body>
+</html>
