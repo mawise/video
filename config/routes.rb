@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :videos
   devise_for :users, :skip => [:registrations]
 
   as :user do
@@ -14,5 +15,5 @@ Rails.application.routes.draw do
 
   get 'welcome/home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'welcome#home'
+  root to: 'videos#index'
 end

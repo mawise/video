@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+group :production do
+  gem "aws-sdk-s3", require: false
+end
+
+# Pagination
+gem 'kaminari', '~> 1.2.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 # Use sqlite3 as the database for Active Record
@@ -24,7 +31,7 @@ gem 'devise', '~> 4.7.1'
 gem 'bcrypt', '~> 3.1.16'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

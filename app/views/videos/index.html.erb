@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<% if current_user.admin? %>
+  <%= link_to 'New Video', new_video_path %>
+<% end %>
+
+<h1>Videos</h1>
+
+<%= form_tag(videos_path, method: :get) do %>
+  Search for Video: <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search", query: nil %>
+<% end %>
+
+<% @videos.each do |video| %>
+  <h2><%= link_to video.title, video %></h2>
+  <% if video.blob.previewable? %>
+    <%= link_to(image_tag(video.blob.preview(resize: 360)), video) %>
+  <% end %>
+<% end %>
+
+<%= paginate @videos %>
